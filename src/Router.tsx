@@ -1,13 +1,15 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router';
 
 const CollectionPage = lazy(() => import('./pages/collection'));
 
 const Router = () => {
   return (
-    <Routes>
-      <Route path="/" index element={<CollectionPage />} />
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<CollectionPage />} />
+      </Routes>
+    </Suspense>
   );
 };
 
