@@ -13,6 +13,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test:unit": "npx jest __tests__/unit",
+    "test:integration": "npx jest __tests__/integration",
     "test:e2e": "npx playwright test",
     "test:e2e:regression": "npx playwright test visual-regression",
     "test:e2e:ui": "npx playwright test --ui",
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "axios": "^1.13.5",
+    "identity-obj-proxy": "^3.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.4",
     "react-icons": "^5.5.0",

@@ -7,7 +7,7 @@ import { collection } from '../../__tests__/factory/collection';
 import { collectionService as collectionServiceFactory } from '../../__tests__/factory/collectionService';
 
 beforeAll(() => {
-  jest.spyOn(window, 'alert').mockImplementation(() => { });
+  jest.spyOn(window, 'alert').mockImplementation(() => {});
 });
 
 describe('/containers/collection', () => {
@@ -177,7 +177,7 @@ describe('/containers/collection', () => {
 
       await userEvent.click(screen.getByRole('button', { name: 'Salvar' }));
 
-      expect(window.alert).toBeCalledTimes(0);
+      expect(window.alert).toHaveBeenCalledTimes(0);
       expect(screen.queryByText('Salvar')).toBe(null);
     });
   });
