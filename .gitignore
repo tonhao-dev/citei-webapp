@@ -29,3 +29,7 @@ dist-ssr
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+
+# Visual regression snapshots
+__tests__/e2e/ui/**/*.png

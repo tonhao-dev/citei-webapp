@@ -15,9 +15,9 @@
     "test:unit": "npx jest __tests__/unit",
     "test:integration": "npx jest __tests__/integration",
     "test:e2e": "npx playwright test",
-    "test:e2e:regression": "npx playwright test visual-regression",
+    "test:e2e:regression": "npx playwright test --config playwright.ui.config.ts",
     "test:e2e:ui": "npx playwright test --ui",
-    "test:e2e:snapshots": "npx playwright test visual-regression --update-snapshots",
+    "test:e2e:snapshots": "npx playwright test --config playwright.ui.config.ts --update-snapshots",
     "test:e2e:headed": "npx playwright test --headed",
     "test:e2e:ci": "cross-env CI=true npm exec playwright test --pass-with-no-tests",
     "test:e2e:install": "npm exec playwright install firefox"
