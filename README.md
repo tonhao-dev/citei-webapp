@@ -1,73 +1,143 @@
-# React + TypeScript + Vite
+# Citei Webapp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto de apoio para a palestra sobre **testes automatizados no frontend**. O objetivo é apresentar na prática os principais tipos de testes — unitários, integração, end-to-end e regressão visual — em uma aplicação React com TypeScript.
 
-Currently, two official plugins are available:
+## Sobre a palestra
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Capacitar os participantes a compreender e aplicar os principais tipos de testes automatizados em aplicações frontend, indo além dos testes visuais, abordando estratégias, boas práticas e o papel dos testes de unidade, integração, end-to-end, regressão visual e de contrato no desenvolvimento de software de qualidade.
 
-## React Compiler
+## Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite
+- Jest + Testing Library (unitários e integração)
+- Playwright (e2e e regressão visual)
 
-## Expanding the ESLint configuration
+## Pré-requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Verificar se o Node.js e o npm estão instalados
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Abra o terminal (Prompt de Comando ou PowerShell) e execute:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+node -v
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Se aparecer algo como `v18.x.x` ou superior, o Node.js já está instalado. Agora verifique o npm:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm -v
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Se aparecer um número de versão, o npm também está instalado.
+
+### Se o Node.js não estiver instalado
+
+1. Acesse [https://nodejs.org/pt](https://nodejs.org/pt)
+2. Clique no botão de download da versão **LTS** (recomendada)
+3. Execute o instalador `.msi` que foi baixado
+4. Siga o assistente clicando em **Next** até finalizar a instalação
+5. Após a instalação, feche e abra o terminal novamente
+6. Execute `node -v` e `npm -v` para confirmar que tudo foi instalado corretamente
+
+> O npm já vem incluído na instalação do Node.js, não precisa instalar separadamente.
+
+## Como rodar o projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/tonhao-dev/citei-webapp
+cd citei-webapp
+```
+
+### 2. Instalar as dependências
+
+```bash
+npm install
+```
+
+### 3. Instalar os navegadores do Playwright
+
+```bash
+npx playwright install
+```
+
+### 4. Rodar a aplicação
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível em `http://localhost:5173`.
+
+## Como rodar os testes
+
+### Testes unitários
+
+Testam funções e entidades de forma isolada.
+
+```bash
+npm run test:unit
+```
+
+### Testes de integração
+
+Testam a interação entre componentes usando Testing Library.
+
+```bash
+npm run test:integration
+```
+
+### Testes end-to-end (E2E)
+
+Testam fluxos completos no navegador com Playwright. A aplicação precisa estar rodando (`npm run dev`) antes de executar.
+
+```bash
+npm run test:e2e
+```
+
+Para rodar com o navegador visível:
+
+```bash
+npm run test:e2e:headed
+```
+
+Para abrir a interface visual do Playwright:
+
+```bash
+npm run test:e2e:ui
+```
+
+### Testes de regressão visual
+
+Comparam screenshots da interface com imagens de referência para detectar mudanças visuais inesperadas.
+
+**Gerar/atualizar os screenshots de referência:**
+
+```bash
+npm run test:e2e:snapshots
+```
+
+**Rodar a comparação visual:**
+
+```bash
+npm run test:e2e:regression
+```
+
+Se algum teste falhar, abra o relatório para ver as diferenças visuais (expected, actual e diff):
+
+```bash
+npx playwright show-report
+```
+
+## Estrutura de testes
+
+```
+__tests__/
+├── unit/              # Testes unitários (Jest)
+├── integration/       # Testes de integração (Jest + Testing Library)
+├── factory/           # Factories para gerar dados de teste
+└── e2e/               # Testes end-to-end (Playwright)
+    └── ui/            # Testes de regressão visual (Playwright)
 ```
