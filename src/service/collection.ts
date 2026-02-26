@@ -1,8 +1,11 @@
-
-import { ICollection, IRawCollection, IServiceCollectionResponse } from "../../src/interfaces/collection";
-import { ImageURL } from "../entities/url";
-import { Collection } from "../entities/collection";
-import { ICollectionRepository } from "src/repository/collection";
+import type {
+  ICollection,
+  IRawCollection,
+  IServiceCollectionResponse,
+} from '@/interfaces/collection';
+import { ImageURL } from '@/entities/url';
+import { Collection } from '@/entities/collection';
+import type { ICollectionRepository } from '@/repository/collection';
 
 export interface ICollectionService {
   getValidCollections: () => Promise<ICollection[]>;
@@ -21,19 +24,19 @@ export class CollectionService implements ICollectionService {
   public async getValidCollections(): Promise<ICollection[]> {
     const colecoes = await this.repository.getAll();
 
-    return colecoes.map(({
-      id, titulo, subtitulo, autor, imagem
-    }) => ({
+    return colecoes.map(({ id, titulo, subtitulo, autor, imagem }) => ({
       id,
       title: titulo,
       subtitle: subtitulo,
       author: autor,
-      image: new ImageURL(imagem)
-    }))
+      image: new ImageURL(imagem),
+    }));
   }
 
   public filterCollections(text: string, collections: ICollection[]) {
-    return collections.filter(({ title }) => title.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
+    return collections.filter(({ title }) =>
+      title.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+    );
   }
 
   public async saveCollection(collection: IRawCollection): Promise<ICollection> {
@@ -41,7 +44,7 @@ export class CollectionService implements ICollectionService {
       titulo: collection.title,
       subtitulo: collection.subtitle,
       autor: collection.author,
-      imagem: collection.image
+      imagem: collection.image,
     });
 
     return this.fromResponseToCollection(data);
@@ -53,13 +56,13 @@ export class CollectionService implements ICollectionService {
       title: collection.titulo,
       subtitle: collection.subtitulo,
       author: collection.autor,
-      image: new ImageURL(collection.imagem)
-    }
+      image: new ImageURL(collection.imagem),
+    };
   }
 
   public isValidCollection({ title, subtitle, author, image }: Partial<IRawCollection>) {
     if (!title || !subtitle || !author || !image) return false;
 
-    return new Collection(title, author, subtitle, new ImageURL(image)).isValid
-  };
+    return new Collection(title, author, subtitle, new ImageURL(image)).isValid;
+  }
 }

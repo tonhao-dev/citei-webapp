@@ -1,8 +1,7 @@
-import React from 'react';
-import { LuEdit } from 'react-icons/lu';
+import { LuPencil } from 'react-icons/lu';
 import { BsTrash3 } from 'react-icons/bs';
-import styles from './styles.module.css'
-import { ICollection } from 'src/interfaces/collection';
+import styles from './styles.module.css';
+import type { ICollection } from '@/interfaces/collection';
 
 interface ICollectionProps {
   collection: ICollection;
@@ -13,10 +12,8 @@ interface ICollectionProps {
 function Collection({
   collection: { title, image, author, subtitle },
   onEdit,
-  onDelete
-}: ICollectionProps
-) {
-
+  onDelete,
+}: ICollectionProps) {
   return (
     <div className={styles.collection}>
       <img src={image.url} alt="Capa da coleção" />
@@ -30,7 +27,7 @@ function Collection({
 
         <div className={styles.actions}>
           <button className={styles.edit} title="Editar" onClick={() => onEdit && onEdit()}>
-            <LuEdit size={19} />
+            <LuPencil size={19} />
             Editar
           </button>
           <button className={styles.delete} title="Excluir" onClick={() => onDelete && onDelete()}>
@@ -40,7 +37,7 @@ function Collection({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Collection;

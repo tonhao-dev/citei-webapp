@@ -1,5 +1,5 @@
-import { faker } from "@faker-js/faker";
-import { IQuotation } from "src/interfaces/quoatation";
+import { faker } from '@faker-js/faker';
+import { IQuotation } from '@/interfaces/quoatation';
 
 export function quotation(initial?: Partial<IQuotation>): IQuotation {
   return {
@@ -7,5 +7,5 @@ export function quotation(initial?: Partial<IQuotation>): IQuotation {
     author: faker.person.fullName(),
     collection: faker.word.words(2),
     ...initial,
-  }
+  };
 }

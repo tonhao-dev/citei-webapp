@@ -1,5 +1,5 @@
-import { ICollection } from "src/interfaces/collection";
-import { ImageURL } from "./url";
+import { ICollection } from '@/interfaces/collection';
+import { ImageURL } from './url';
 
 export class Collection implements ICollection {
   public id = 0;
@@ -19,7 +19,8 @@ export class Collection implements ICollection {
   }
 
   private validate() {
-    this.isValid = this.isValidTitle() && this.isValidSubTitle() && this.isValidAuthor() && this.isValidImage();
+    this.isValid =
+      this.isValidTitle() && this.isValidSubTitle() && this.isValidAuthor() && this.isValidImage();
   }
 
   private isValidTitle() {

@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.css'
-import Title from '../../components/title';
-import Subtitle from '../../components/subtitle';
-import CollectionList from '../../components/collectionList';
-import Button from '../../components/button';
-import { ICollection, IRawCollection } from '../../interfaces/collection';
-import { ICollectionService } from '../../service/collection';
-import Modal from '../../components/modal';
-import Input from '../../components/input';
-import Search from '../../components/search';
+import { useEffect, useState } from 'react';
+import Title from '@/components/title';
+import Subtitle from '@/components/subtitle';
+import CollectionList from '@/components/collectionList';
+import Button from '@/components/button';
+import type { ICollection, IRawCollection } from '@/interfaces/collection';
+import type { ICollectionService } from '@/service/collection';
+import Modal from '@/components/modal';
+import Input from '@/components/input';
+import Search from '@/components/search';
+
+import styles from './styles.module.css';
 
 export interface ICollectionProps {
-  collectionService: ICollectionService
+  collectionService: ICollectionService;
 }
 
 function Collection({ collectionService }: ICollectionProps) {
   const [search, setSearch] = useState('');
-  const [isSearch, setIsSearch] = useState(false)
+  const [isSearch, setIsSearch] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [collections, setCollections] = useState<ICollection[]>([]);
-  const [newCollection, setNewCollection] = useState<Partial<IRawCollection>>({})
+  const [newCollection, setNewCollection] = useState<Partial<IRawCollection>>({});
 
   async function fetch() {
     setCollections(await collectionService.getValidCollections());
   }
 
   async function save() {
-    if (!collectionService.isValidCollection(newCollection)) return window.alert('Erro! revise os campos do modal');
+    if (!collectionService.isValidCollection(newCollection))
+      return window.alert('Erro! revise os campos do modal');
 
     const collection = await collectionService.saveCollection(newCollection as IRawCollection);
     setCollections([...collections, collection]);
     setModalIsOpen(!modalIsOpen);
-    setNewCollection({})
+    setNewCollection({});
   }
 
   useEffect(() => {
@@ -43,7 +45,7 @@ function Collection({ collectionService }: ICollectionProps) {
       <header className={styles.heading}>
         <div className={styles.title}>
           {!isSearch && <Title>Citei</Title>}
-          <Search onChange={(text) => setSearch(text)} onToggle={isSearch => setIsSearch(isSearch)} />
+          <Search onChange={text => setSearch(text)} onToggle={isSearch => setIsSearch(isSearch)} />
         </div>
         {!isSearch && <Subtitle>Coleções, seu conjunto de citações em reunidos em lugar.</Subtitle>}
       </header>
@@ -52,18 +54,46 @@ function Collection({ collectionService }: ICollectionProps) {
 
       <Modal visible={modalIsOpen} onClose={() => setModalIsOpen(false)}>
         <form className={styles.form} onSubmit={e => e.preventDefault()}>
-          <Input required placeholder='Título da coleção' onChange={(e) => { setNewCollection({ ...newCollection, title: e.target.value }) }} />
-          <Input required placeholder='Subtítulo da coleção' onChange={(e) => { setNewCollection({ ...newCollection, subtitle: e.target.value }) }} />
-          <Input required placeholder='Link para imagem de capa' onChange={(e) => { setNewCollection({ ...newCollection, image: e.target.value }) }} />
-          <Input required placeholder='Autor da coleção' onChange={(e) => { setNewCollection({ ...newCollection, author: e.target.value }) }} />
+          <Input
+            required
+            placeholder="Título da coleção"
+            onChange={e => {
+              setNewCollection({ ...newCollection, title: e.target.value });
+            }}
+          />
+          <Input
+            required
+            placeholder="Subtítulo da coleção"
+            onChange={e => {
+              setNewCollection({ ...newCollection, subtitle: e.target.value });
+            }}
+          />
+          <Input
+            required
+            placeholder="Link para imagem de capa"
+            onChange={e => {
+              setNewCollection({ ...newCollection, image: e.target.value });
+            }}
+          />
+          <Input
+            required
+            placeholder="Autor da coleção"
+            onChange={e => {
+              setNewCollection({ ...newCollection, author: e.target.value });
+            }}
+          />
 
-          <Button title='Salvar' variant='white' onClick={() => save()} />
+          <Button title="Salvar" variant="white" onClick={() => save()} />
         </form>
       </Modal>
 
-      <Button title="Adicionar coleção" onClick={() => setModalIsOpen(!modalIsOpen)} aria-label='Adicionar coleção' />
+      <Button
+        title="Adicionar coleção"
+        onClick={() => setModalIsOpen(!modalIsOpen)}
+        aria-label="Adicionar coleção"
+      />
     </div>
-  )
+  );
 }
 
 export default Collection;

@@ -4,7 +4,7 @@ import { ImageURL } from '../../src/entities/url';
 describe('entities/url', () => {
   describe('isValid', () => {
     it('Deve retornar true quando uma URL válida for enviada', () => {
-      const url = faker.image.urlPlaceholder();
+      const url = faker.image.url();
 
       expect(new ImageURL(url).isValid).toBe(true);
     });
@@ -29,11 +29,11 @@ describe('entities/url', () => {
     });
 
     it('Deve retornar true quando a URL informada for uma URL estatica da propria aplicação', () => {
-      const url = `${process.env.NEXT_PUBLIC_DEV_URL}/assets/collection.jpg`;
+      const url = 'http://localhost:5173/assets/collection.jpg';
 
       const isValid = new ImageURL(url).isValid;
 
       expect(isValid).toBe(true);
-    })
+    });
   });
 });
