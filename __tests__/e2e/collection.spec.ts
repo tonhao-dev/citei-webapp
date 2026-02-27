@@ -13,8 +13,8 @@ function createCollection(): IRawCollection {
 
 async function addCollection(page: Page, data: IRawCollection) {
   await page.getByRole('button', { name: 'Adicionar coleção' }).click();
-  await page.getByPlaceholder('Título da coleção', { exact: true }).fill(data.title);
-  await page.getByPlaceholder('Subtítulo da coleção', { exact: true }).fill(data.subtitle);
+  await page.getByPlaceholder('Título da coleção').fill(data.title);
+  await page.getByPlaceholder('Subtítulo da coleção').fill(data.subtitle);
   await page.getByPlaceholder('Link para imagem de capa').fill(data.image);
   await page.getByPlaceholder('Autor da coleção').fill(data.author);
   await page.getByRole('button', { name: 'Salvar' }).click();
@@ -52,8 +52,8 @@ test.describe('e2e/collection', () => {
       await addCollection(page, collectionOne);
       await addCollection(page, collectionTwo);
 
-      await page.locator('[aria-label="search-icon"]').click();
-      await page.locator('input[name="search-input"]').fill(collectionOne.title);
+      await page.getByLabel('search-icon').click();
+      await page.getByRole('textbox', { name: 'search-input' }).fill(collectionOne.title);
 
       await expect(
         page.getByRole('heading', { name: collectionOne.title, level: 3 })
@@ -69,8 +69,8 @@ test.describe('e2e/collection', () => {
       await addCollection(page, collectionOne);
       await addCollection(page, collectionTwo);
 
-      await page.locator('[aria-label="search-icon"]').click();
-      await page.locator('input[name="search-input"]').fill(collectionOne.title);
+      await page.getByLabel('search-icon').click();
+      await page.getByRole('textbox', { name: 'search-input' }).fill(collectionOne.title);
 
       await expect(
         page.getByRole('heading', { name: collectionTwo.title, level: 3 })
