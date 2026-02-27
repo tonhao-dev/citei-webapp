@@ -4,14 +4,14 @@ export class ImageURL {
   public url = DEFAULT_IMAGE_URL;
   public isValid = false;
 
-  constructor (url: string) {
+  constructor(url: string) {
     this.isValid = this.isValidUrl(url);
-    if(!this.isValid) return;
+    if (!this.isValid) return;
 
     this.url = url;
   }
 
-  private isValidUrl(url: string){
+  private isValidUrl(url: string) {
     try {
       const newUrl = new URL(url);
       return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';

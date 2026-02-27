@@ -15,12 +15,12 @@ type CollectionListStory = StoryObj<typeof CollectionList>;
 
 export const CollectionListStory: CollectionListStory = {
   args: {
-    collections: Array.from(Array(4)).map(() => collection({
-      title: 'Título da coleção',
-      author: 'Luis',
-      subtitle: 'Subtítulo da coleção',
-    }))
+    collections: Array.from(Array(4)).map(() =>
+      collection({
+        title: 'Título da coleção',
+        author: 'Luis',
+        subtitle: 'Subtítulo da coleção',
+      })
+    ),
   },
 };
-
-

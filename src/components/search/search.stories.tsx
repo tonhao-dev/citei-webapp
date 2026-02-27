@@ -14,16 +14,15 @@ type SearchStory = StoryObj<typeof Search>;
 
 export const SearchClose: SearchStory = {
   args: {
-    onChange: () => { },
-    onToggle: () => { }
+    onChange: () => {},
+    onToggle: () => {},
   },
 };
 
 export const SearchOpen: SearchStory = {
   args: {
     open: true,
-    onChange: () => { },
-    onToggle: () => { }
+    onChange: () => {},
+    onToggle: () => {},
   },
 };
-

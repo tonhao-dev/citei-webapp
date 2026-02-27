@@ -19,8 +19,6 @@ export const CollectionStory: SearchStory = {
       title: 'Título da coleção',
       author: 'Luis',
       subtitle: 'Subtítulo da coleção',
-    })
+    }),
   },
 };
-
-

@@ -14,6 +14,6 @@ type SubTitleStory = StoryObj<typeof SubTitle>;
 
 export const Subtitle: SubTitleStory = {
   args: {
-    children: 'Sub Título'
+    children: 'Sub Título',
   },
 };

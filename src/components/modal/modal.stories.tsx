@@ -15,10 +15,6 @@ type ModalStory = StoryObj<typeof Modal>;
 export const OpenModal: ModalStory = {
   args: {
     visible: true,
-    children: (
-      <h1>Luis Antonio</h1>
-    )
+    children: <h1>Luis Antonio</h1>,
   },
 };
-
-

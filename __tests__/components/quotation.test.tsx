@@ -9,13 +9,13 @@ describe('<Quotation>', () => {
     it('Deve deixar de renderizar o parágrafo da citação quando nada for passado no atributo "quote"', () => {
       render(<Quotation />);
 
-      expect(screen.getByTitle('quote-title')).not.toBeInTheDocument();
+      expect(screen.queryByTitle('quote-title')).not.toBeInTheDocument();
     });
 
     it('Deve deixar de renderizar o paragrafo com o nome do autor quando essa informação não for passada', () => {
       render(<Quotation />);
 
-      expect(screen.getByTitle('quote-author')).not.toBeInTheDocument();
+      expect(screen.queryByTitle('quote-author')).not.toBeInTheDocument();
     });
   });
 

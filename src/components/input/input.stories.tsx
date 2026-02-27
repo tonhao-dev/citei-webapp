@@ -18,6 +18,6 @@ export const ClearInput: InputStory = {
 
 export const InputWithText: InputStory = {
   args: {
-    value: 'Luis Antonio'
+    value: 'Luis Antonio',
   },
 };

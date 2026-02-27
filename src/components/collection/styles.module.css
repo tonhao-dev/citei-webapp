@@ -1,7 +1,7 @@
 .collection {
   width: 100%;
   max-width: 320px;
-  border: 1px solid #7A7A7A;
+  border: 1px solid #7a7a7a;
   border-radius: 7px;
   display: flex;
   flex-direction: row;
@@ -43,7 +43,7 @@
 .subtitle {
   font-size: 12px;
   line-height: 15px;
-  color: #7A7A7A;
+  color: #7a7a7a;
 }
 
 .author {

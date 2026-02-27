@@ -6,7 +6,7 @@ import { ImageURL } from '../../src/entities/url';
 describe('entities/collection', () => {
   describe('Deve retornar false quando uma coleção for instanciada com algum valor invalido', () => {
     it('Deve retornar false quando uma coleção for criada com o Título vazio', () => {
-      const arrange: ICollection = {
+      const arrange: Omit<ICollection, 'id'> = {
         title: '',
         author: faker.person.fullName(),
         image: new ImageURL(faker.image.url()),
@@ -24,7 +24,7 @@ describe('entities/collection', () => {
     });
 
     it('Deve retornar false quando uma coleção for criada com o subtítulo vazio', () => {
-      const arrange: ICollection = {
+      const arrange: Omit<ICollection, 'id'> = {
         title: faker.word.words(2),
         author: faker.person.fullName(),
         image: new ImageURL(faker.image.url()),
@@ -42,7 +42,7 @@ describe('entities/collection', () => {
     });
 
     it('Deve retornar false quando uma coleção é criada com uma ImageURL invalida', () => {
-      const arrange: ICollection = {
+      const arrange: Omit<ICollection, 'id'> = {
         title: faker.word.words(2),
         author: faker.person.fullName(),
         image: new ImageURL(''),
@@ -61,7 +61,7 @@ describe('entities/collection', () => {
   });
 
   it('Deve retornar o valor true na propriedade isValid quando uma coleção for criada com todos os valores válidos', () => {
-    const arrange: ICollection = {
+    const arrange: Omit<ICollection, 'id'> = {
       title: faker.word.words(2),
       subtitle: faker.word.words(7),
       author: faker.person.fullName(),
