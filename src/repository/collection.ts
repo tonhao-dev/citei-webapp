@@ -8,6 +8,8 @@ import type {
 export interface ICollectionRepository {
   getAll: () => Promise<IServiceCollectionResponse[]>;
   saveOne: (collection: IServiceCollectionBody) => Promise<IServiceCollectionResponse>;
+  updateOne: (id: number, collection: IServiceCollectionBody) => Promise<IServiceCollectionResponse>;
+  deleteOne: (id: number) => Promise<void>;
 }
 
 export class CollectionRepository implements ICollectionRepository {
@@ -30,5 +32,15 @@ export class CollectionRepository implements ICollectionRepository {
     const { data } = await api.post<IServiceCollectionResponse>('/colecao', collection);
 
     return { ...data, subtitulo: data.subtitulo ?? '' };
+  }
+
+  public async updateOne(id: number, collection: IServiceCollectionBody) {
+    const { data } = await api.put<IServiceCollectionResponse>(`/colecao/${id}`, collection);
+
+    return { ...data, subtitulo: data.subtitulo ?? '' };
+  }
+
+  public async deleteOne(id: number) {
+    await api.delete(`/colecao/${id}`);
   }
 }
