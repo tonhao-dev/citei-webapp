@@ -30,6 +30,11 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    /* Pausa (ms) entre cada ação. Ex.: SLOWMO=500 npx playwright test --headed */
+    launchOptions: {
+      slowMo: Number(process.env.SLOWMO ?? 0),
+    },
   },
 
   /* Configure projects for major browsers */
