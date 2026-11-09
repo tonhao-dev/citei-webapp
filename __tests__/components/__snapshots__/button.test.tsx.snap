@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Button /> Deve ser igual ao snapshot salvo anteriormente quando o botão for renderizado 1`] = `
+exports[`<Button /> > Deve ser igual ao snapshot salvo anteriormente quando o botão for renderizado 1`] = `
 <button
   class="black"
 >
-  likewise toward firm
+  ew mountain energetically
 </button>
 `;
