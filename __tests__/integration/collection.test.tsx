@@ -148,6 +148,18 @@ describe('/containers/collection', () => {
       expect(screen.getByPlaceholderText('Autor da coleção')).toBeVisible();
     });
 
+    it('Deve esconder o modal quando o usuário clicar no botão "Close"', async () => {
+      const collectionService = collectionServiceFactory({
+        getValidCollections: jest.fn().mockResolvedValue([]),
+      });
+      await act(async () => render(<Collection collectionService={collectionService} />));
+
+      await userEvent.click(screen.getByText('Adicionar coleção'));
+      await userEvent.click(screen.getByRole('button', { name: 'Close' }));
+
+      expect(screen.queryByPlaceholderText('Título da coleção')).not.toBeInTheDocument();
+    });
+
     it('Deve exibir o botão de salvar a coleção', async () => {
       const collectionService = collectionServiceFactory({
         getValidCollections: jest.fn().mockResolvedValue([]),
