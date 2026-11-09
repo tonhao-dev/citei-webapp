@@ -89,7 +89,7 @@ function Collection({ collectionService }: ICollectionProps) {
             }}
           />
 
-          <Button title="Salvar" variant="white" onClick={() => save()} />
+          <Button title="Salvar" variant="black" onClick={() => save()} />
         </form>
       </Modal>
 
