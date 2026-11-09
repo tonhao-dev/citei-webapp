@@ -84,6 +84,15 @@ function Collection({ collectionService }: ICollectionProps) {
           />
 
           <Button title="Salvar" variant="white" onClick={() => save()} />
+          <Button
+            type="button"
+            title="Close"
+            variant="white"
+            onClick={() => {
+              setModalIsOpen(false);
+              setNewCollection({});
+            }}
+          />
         </form>
       </Modal>
 
