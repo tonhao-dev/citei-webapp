@@ -4,14 +4,12 @@ class Client {
   api: AxiosInstance;
 
   constructor() {
-    const baseURL = process.env.NEXT_PUBLIC_API_URL ?? '';
+    const baseURL = import.meta.env.VITE_API_URL ?? 'http://localhost:3123';
 
     this.api = axios.create({
       baseURL: baseURL,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Origin': '*',
       },
     });
   }

@@ -1,0 +1,20 @@
+name: citei-webapp
+
+# Requer o backend no ar (cria a rede citei-net):
+#   cd ../citei-backend && docker compose up -d
+services:
+  webapp:
+    build:
+      context: .
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:3123}
+    ports:
+      - "${WEBAPP_PORT:-5173}:80"
+    restart: unless-stopped
+    networks:
+      - citei-net
+
+networks:
+  citei-net:
+    external: true
+    name: citei-net
