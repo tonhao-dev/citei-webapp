@@ -36,3 +36,14 @@ __tests__/e2e/ui/**/*.png
 
 # TypeScript
 *.tsbuildinfo
+
+# Pact
+/pacts/
+/logs/
+
+# Visual regression (failure reports)
+/visual/test-results/
+/visual/node_modules/
+
+# Segredos locais
+.env

@@ -4,3 +4,7 @@ dist
 __tests__
 test-results
 playwright-report
+visual
+pacts
+scripts
+

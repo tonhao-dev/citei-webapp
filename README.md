@@ -141,3 +141,34 @@ __tests__/
 └── e2e/               # Testes end-to-end (Playwright)
     └── ui/            # Testes de regressão visual (Playwright)
 ```
+
+## Testes de contrato (Pact)
+
+Este frontend é o consumidor. O backend (`citei-backend`) é o provedor.
+O broker sobe a partir do repositório do backend: `npm run pact:broker:up`.
+
+1. `npm run test:pact` gera o contrato na pasta `pacts/`.
+2. `npm run pact:publish` envia o contrato ao broker (http://localhost:9292).
+3. No backend, `npm run pact:verify` verifica o contrato.
+4. `npm run pact:can-i-deploy` diz se esta versão pode ir para produção.
+
+## Regressão visual (Playwright com Node e TypeScript)
+
+Os testes ficam na pasta `visual/` e rodam dentro da imagem oficial `mcr.microsoft.com/playwright:v1.63.0-noble`. O mesmo navegador e as mesmas fontes geram sempre a mesma imagem.
+A versão da imagem e a do `@playwright/test` (em `visual/package.json`) precisam ser iguais.
+
+1. `npm run test:visual:update` grava as imagens de referência em `visual/tests/__snapshots__/`.
+2. `npm run test:visual` compara a tela atual com essas imagens.
+3. Se algo mudar sem querer, o teste falha e grava a imagem esperada, a atual e a diferença em `visual/test-results/`.
+4. Se a mudança foi de propósito, rode o passo 1 de novo e faça commit das imagens novas.
+
+O app sobe sozinho no compose `docker-compose.visual.yml`. A API é falsa, então não precisa do backend.
+`npm run test:visual:down` apaga os containers.
+
+## Segurança (Snyk)
+
+1. Copie o token em https://app.snyk.io/account e ponha no `.env`: `SNYK_TOKEN=seu-token`.
+2. Rode `npm run snyk:all` (dependências, código e imagem Docker).
+3. Rode `npm run snyk:monitor` para guardar um snapshot no painel do Snyk.
+
+Sem `SNYK_TOKEN` no `.env`, os scripts avisam e saem com código 0. Com token, falham se acharem problema de severidade alta ou maior.
