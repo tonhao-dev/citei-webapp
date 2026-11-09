@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 5173",
-    "build": "tsc -b && vite build",
+    "build": "tsc -p tsconfig.app.json && tsc -p tsconfig.node.json && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
@@ -23,7 +23,8 @@
     "test:e2e:snapshots": "npx playwright test --config playwright.ui.config.ts --update-snapshots",
     "test:e2e:headed": "npx playwright test --headed",
     "test:e2e:ci": "cross-env CI=true npm exec playwright test --pass-with-no-tests",
-    "test:e2e:install": "npm exec playwright install firefox"
+    "test:e2e:install": "npm exec playwright install firefox",
+    "prepare": "husky"
   },
   "dependencies": {
     "axios": "^1.13.5",
@@ -56,6 +57,7 @@
     "eslint-plugin-react-refresh": "^0.4.26",
     "eslint-plugin-testing-library": "^7.16.0",
     "globals": "^16.5.0",
+    "husky": "9.1.7",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "^3.8.1",

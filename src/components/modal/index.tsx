@@ -1,4 +1,5 @@
-import React, { Children, ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import styles from './styles.module.css';
 

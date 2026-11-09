@@ -1,4 +1,4 @@
-import { ICollection } from '@/interfaces/collection';
+import type { ICollection } from '@/interfaces/collection';
 import { ImageURL } from './url';
 
 export class Collection implements ICollection {
