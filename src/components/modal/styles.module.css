@@ -17,7 +17,15 @@
   align-items: center;
 }
 
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
 .modal {
+  position: relative;
   width: 100%;
   max-width: 320px;
   padding: 20px;

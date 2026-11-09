@@ -52,7 +52,13 @@ function Collection({ collectionService }: ICollectionProps) {
 
       <CollectionList collections={collectionService.filterCollections(search, collections)} />
 
-      <Modal visible={modalIsOpen} onClose={() => setModalIsOpen(false)}>
+      <Modal
+        visible={modalIsOpen}
+        onClose={() => {
+          setModalIsOpen(false);
+          setNewCollection({});
+        }}
+      >
         <form className={styles.form} onSubmit={e => e.preventDefault()}>
           <Input
             required
@@ -84,15 +90,6 @@ function Collection({ collectionService }: ICollectionProps) {
           />
 
           <Button title="Salvar" variant="white" onClick={() => save()} />
-          <Button
-            type="button"
-            title="Close"
-            variant="white"
-            onClick={() => {
-              setModalIsOpen(false);
-              setNewCollection({});
-            }}
-          />
         </form>
       </Modal>
 
