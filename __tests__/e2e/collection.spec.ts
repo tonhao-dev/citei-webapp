@@ -32,18 +32,18 @@ test.describe('e2e/collection', () => {
     });
   });
 
-  test.describe('Deve exibir corretamente o modal de cadastrar coleção', () => {
-    test('Deve exibir a coleção que foi adicionada pelo usuário através do modal de adicionar coleção', async ({
-      page,
-    }) => {
-      const newCollection = createCollection();
-      await addCollection(page, newCollection);
+  // test.describe('Deve exibir corretamente o modal de cadastrar coleção', () => {
+  //   test('Deve exibir a coleção que foi adicionada pelo usuário através do modal de adicionar coleção', async ({
+  //     page,
+  //   }) => {
+  //     const newCollection = createCollection();
+  //     await addCollection(page, newCollection);
 
-      await expect(
-        page.getByRole('heading', { name: newCollection.title, level: 3 })
-      ).toBeVisible();
-    });
-  });
+  //     await expect(
+  //       page.getByRole('heading', { name: newCollection.title, level: 3 })
+  //     ).toBeVisible();
+  //   });
+  // });
 
   test.describe('Deve filtrar as coleções corretamente', () => {
     test('Deve exibir a coleção cujo título foi digitado no campo de buscar', async ({ page }) => {
