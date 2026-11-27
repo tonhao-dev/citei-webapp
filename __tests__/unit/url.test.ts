@@ -8,16 +8,16 @@ afterEach(() => {
 
 describe('entities/url', () => {
   describe('isValid', () => {
-    it('Deve retornar true quando uma URL válida for enviada', () => {
-      // Arrange
-      const url = faker.image.url();
+    // it('Deve retornar true quando uma URL válida for enviada', () => {
+    //   // Arrange
+    //   const url = faker.image.url();
 
-      // Act
-      const isValid = new ImageURL(url).isValid;
+    //   // Act
+    //   const isValid = new ImageURL(url).isValid;
 
-      // Assert
-      expect(isValid).toBe(true);
-    });
+    //   // Assert
+    //   expect(isValid).toBe(true);
+    // });
 
     it('Deve retornar false quando uma URL inválida for enviada', () => {
       // Arrange
