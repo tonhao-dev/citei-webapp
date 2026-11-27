@@ -1,0 +1,8 @@
+{
+  "name": "citei-visual",
+  "private": true,
+  "description": "Regressão visual com Playwright. A versão precisa ser igual à da imagem do container.",
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

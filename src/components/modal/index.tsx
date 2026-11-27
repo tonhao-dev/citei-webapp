@@ -1,4 +1,6 @@
-import React, { Children, ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { IoCloseOutline } from 'react-icons/io5';
 import styles from './styles.module.css';
 
 export interface IModalProps {
@@ -24,7 +26,18 @@ function Modal({ visible, children, onClose }: IModalProps) {
 
   return visible ? (
     <div className={styles.background} onClick={e => e.stopPropagation()}>
-      <div className={styles.modal}>{children}</div>
+      <div className={styles.modal}>
+        {onClose && (
+          <IoCloseOutline
+            className={styles.close}
+            title="Fechar"
+            size={28}
+            aria-label="modal-close"
+            onClick={() => onClose()}
+          />
+        )}
+        {children}
+      </div>
     </div>
   ) : (
     <></>

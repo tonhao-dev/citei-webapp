@@ -1,0 +1,30 @@
+name: citei-visual
+
+# Regressão visual com Playwright (Node + TypeScript) dentro do container oficial.
+#   npm run test:visual          -> compara com as imagens salvas
+#   npm run test:visual:update   -> grava as imagens de referência
+# O app sobe sozinho aqui; não precisa do backend nem de outro compose.
+services:
+  app:
+    build:
+      context: .
+      args:
+        # Endereço falso: o teste responde no lugar da API.
+        VITE_API_URL: http://api.test
+
+  visual:
+    build: ./visual
+    depends_on:
+      - app
+    environment:
+      BASE_URL: http://app
+      API_URL: http://api.test
+    volumes:
+      # node_modules fica na imagem; só o que muda vai por volume.
+      - ./visual/tests:/work/tests
+      - ./visual/playwright.config.ts:/work/playwright.config.ts:ro
+      - ./visual/test-results:/work/test-results
+    working_dir: /work
+    init: true
+    ipc: host
+    command: npx playwright test

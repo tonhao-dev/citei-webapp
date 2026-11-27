@@ -4,13 +4,20 @@ import Collection from '../collection';
 
 interface ICollectionListProps {
   collections: ICollection[];
+  onEdit?: (collection: ICollection) => void;
+  onDelete?: (collection: ICollection) => void;
 }
 
-function CollectionList({ collections }: ICollectionListProps) {
+function CollectionList({ collections, onEdit, onDelete }: ICollectionListProps) {
   return (
     <ul className={styles['collection-list']}>
       {collections.map(collection => (
-        <Collection key={collection.title} collection={collection} />
+        <Collection
+          key={collection.title}
+          collection={collection}
+          onEdit={() => onEdit && onEdit(collection)}
+          onDelete={() => onDelete && onDelete(collection)}
+        />
       ))}
     </ul>
   );

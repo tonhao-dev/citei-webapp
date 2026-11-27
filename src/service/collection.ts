@@ -12,6 +12,8 @@ export interface ICollectionService {
   filterCollections: (text: string, collections: ICollection[]) => ICollection[];
   saveCollection: (collection: IRawCollection) => Promise<ICollection>;
   isValidCollection: (rawCollection: Partial<IRawCollection>) => boolean;
+  updateCollection: (id: number, collection: IRawCollection) => Promise<ICollection>;
+  deleteCollection: (id: number) => Promise<void>;
 }
 
 export class CollectionService implements ICollectionService {
@@ -48,6 +50,21 @@ export class CollectionService implements ICollectionService {
     });
 
     return this.fromResponseToCollection(data);
+  }
+
+  public async updateCollection(id: number, collection: IRawCollection): Promise<ICollection> {
+    const data = await this.repository.updateOne(id, {
+      titulo: collection.title,
+      subtitulo: collection.subtitle,
+      autor: collection.author,
+      imagem: collection.image,
+    });
+
+    return this.fromResponseToCollection(data);
+  }
+
+  public async deleteCollection(id: number): Promise<void> {
+    await this.repository.deleteOne(id);
   }
 
   private fromResponseToCollection(collection: IServiceCollectionResponse): ICollection {

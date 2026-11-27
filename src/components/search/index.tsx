@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { IoCloseOutline } from 'react-icons/io5';
 import styles from './styles.module.css';

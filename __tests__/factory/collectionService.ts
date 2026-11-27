@@ -7,6 +7,8 @@ export function collectionService(initial?: Partial<ICollectionService>): IColle
     filterCollections: (_, collections) => collections,
     isValidCollection: _ => true,
     saveCollection: _ => Promise.resolve(collection()),
+    updateCollection: _ => Promise.resolve(collection()),
+    deleteCollection: _ => Promise.resolve(),
     ...initial,
   };
 }

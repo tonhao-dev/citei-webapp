@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { ImageURL } from '../../src/entities/url';
-import { ICollection } from '../../src/interfaces/collection';
+import type { ICollection } from '../../src/interfaces/collection';
 
 export function collection(initial?: Partial<ICollection>): ICollection {
   return {

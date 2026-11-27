@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes } from 'react';
 import styles from './styles.module.css';
 
 function Input({ ...props }: InputHTMLAttributes<HTMLInputElement>) {
